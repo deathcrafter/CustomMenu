@@ -1,0 +1,83 @@
+[Variables]
+ContextWidth=350
+
+ContextRounding=10
+
+SubContextWidth=300
+
+SubContextBoxXOffset=-5
+
+TextSize=11
+
+LeftPadding=10
+
+ContextIndicatorYOffset=-1
+
+BackgroundColor=240,240,240
+
+SubContextBackgroundColor=200,200,200
+
+ContextHighlightColor=90,90,90,100
+
+SubContextHighlightColor=240,240,240,200
+
+TextColor=20,20,20
+
+;----------------- Meter Styles
+
+[ContextStyle]
+Y=R
+FontFace=Segoe UI
+FontSize=#TextSize#
+FontColor=#TextColor#
+Padding=#LeftPadding#,0,0,5
+ClipString=1
+W=(#ContextWidth#-2*#LeftPadding#)
+DynamicVariables=1
+AntiAlias=1
+MouseOverAction=[!SetOption ContextIndicator Y "([#CURRENTSECTION#:Y]+#ContextIndicatorYOffset#)"][!ShowMeter ContextIndicator][!UpdateMeter ContextIndicator][!Redraw]
+MouseLeaveAction=[!HideMeter ContextIndicator][!UpdateMeter ContextIndicator][!Redraw]
+
+[SubContextStyle]
+Y=R
+FontFace=Segoe UI
+FontSize=#TextSize#
+FontColor=#TextColor#
+Padding=#LeftPadding#,0,0,5
+ClipString=1
+W=(#SubContextWidth#-2*#LeftPadding#)
+DynamicVariables=1
+AntiAlias=1
+
+[SubContextIndicatorStyle]
+X=(#ContextWidth#-7)
+Y=5r
+FontFace=Segoe MDL2 Assets
+FontSize=8
+FontWeight=800
+Text=[\xE974]
+Padding=0,0,0,10
+StringAlign=Right
+Container=ContextContainer
+
+[ContextSeparatorStyle]
+Y=R
+Shape=Rectangle #LeftPadding#,0,(#ContextWidth#-#LeftPadding#),1 | StrokeWidth 0 | Fill Color 90,90,90
+Shape2=Rectangle 0,0,#ContextWidth#,5 | StrokeWidth 0 | Fill Color 0,0,0,0
+
+[SubContextSeparatorStyle]
+Y=R
+Shape=Rectangle #LeftPadding#,0,(#SubContextWidth#-#LeftPadding#),1 | StrokeWidth 0 | Fill Color 90,90,90
+Shape2=Rectangle 0,0,#ContextWidth#,5 | StrokeWidth 0 | Fill Color 0,0,0,0
+
+[ContextIndicator]
+Meter=Shape
+Shape=Rectangle (#LeftPadding#/2),0,(#ContextWidth#-#LeftPadding#), 23, 7 | Fill Color #ContextHighlightColor# | StrokeWidth 0
+DynamicVariables=1
+Container=ContextContainer
+Hidden=1
+
+[SubContextIndicator]
+Shape=Rectangle (#LeftPadding#/2),0,(#SubContextWidth#-#LeftPadding#), 23, 7 | Fill Color #SubContextHighlightColor# | StrokeWidth 0
+DynamicVariables=1
+Hidden=1
